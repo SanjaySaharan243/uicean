@@ -3,12 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Heart, MoveUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Heart, MoveUpRight } from "lucide-react";
 import { assets, type Asset } from "@/lib/catalog";
 import { readFavorites, recordRecentlyViewed, writeFavorites } from "@/lib/persistence";
 import { PricingTable, SpotlightCard } from "@/components/marketplace-resources";
+import { NovaListingPreview } from "@/components/nova-template";
 
 function assetHref(asset: Asset) {
+  if (asset.id === "nova") return "/templates/nova";
   if (asset.id === "pricing-table") return "/blocks/pricing-table";
   if (asset.id === "spotlight-card") return "/components/spotlight-card";
   if (asset.type === "Component") return `/components/${asset.id}`;
@@ -18,6 +20,7 @@ function assetHref(asset: Asset) {
 }
 
 function PreviewArtwork({ asset, index }: { asset: Asset; index: number }) {
+  if (asset.id === "nova") return <div className="asset-art nova-resource-art"><NovaListingPreview/><div className="art-topline"><span>Complete website · Live preview</span><span className="art-arrow"><ArrowUpRight size={14}/></span></div><div className="art-bottomline"><span>FREE TEMPLATE</span><span>5 PAGES — 12 PARTS</span></div></div>;
   if (asset.id === "pricing-table") return <div className="asset-art resource-art-pricing"><div className="resource-art-pricing-inner"><PricingTable title="Plans for what comes next." description="Choose a little room to grow."/></div><div className="art-topline"><span>Block · Live preview</span><span className="art-arrow"><ArrowUpRight size={14}/></span></div><div className="art-bottomline"><span>FREE</span><span>PRICING</span></div></div>;
   if (asset.id === "spotlight-card") return <div className="asset-art resource-art-spotlight"><SpotlightCard title="A little more depth." description="A soft light follows the pointer."/><div className="art-topline"><span>Component · Live preview</span><span className="art-arrow"><ArrowUpRight size={14}/></span></div><div className="art-bottomline"><span>FREE</span><span>SPOTLIGHT</span></div></div>;
   return <div className={`asset-art art-${asset.art}`}>
@@ -59,6 +62,7 @@ export function AssetCard({ asset, index = 0 }: { asset: Asset; index?: number }
     setLiked(!liked);
   }
   function markViewed() { recordRecentlyViewed(asset.id); }
+  if(asset.id==="nova") return <article className="asset-card nova-template-card" style={{animationDelay:`${index%5*70}ms`}}><div className="nova-template-card-preview"><NovaListingPreview/><Link href="/templates/nova" onClick={markViewed} aria-label="Open NOVA live template workspace"><span>OPEN WORKSPACE <ArrowUpRight size={14}/></span></Link></div><div className="asset-meta"><div><span className="asset-category">SAAS & STARTUPS · 5 PAGES · 12 PARTS</span><h3><Link href="/templates/nova" onClick={markViewed}>{asset.title}</Link></h3><p className="template-card-description">{asset.description}</p></div><button className={`heart-button ${liked?"liked":""}`} onClick={toggleFavorite} aria-label={liked?"Remove NOVA from favourites":"Add NOVA to favourites"} aria-pressed={liked}><Heart size={16} fill={liked?"currentColor":"none"}/></button></div><div className="asset-meta-bottom"><div className="tag-list">{asset.tags.map(tag=><span key={tag}>{tag}</span>)}</div><span className="price-free">FREE</span></div><div className="nova-template-card-actions"><Link href="/templates/nova" onClick={markViewed}>Live Preview <ExternalLink size={13}/></Link><Link href="/templates/nova" onClick={markViewed}>Explore Template <ArrowUpRight size={13}/></Link></div></article>;
   return <article className="asset-card" style={{ animationDelay: `${index % 5 * 70}ms` }}>
     <div className="asset-link">
       <Link href={href} className="asset-preview-link" onClick={markViewed} aria-label={`Preview ${asset.title}`}><PreviewArtwork asset={asset} index={index}/></Link>

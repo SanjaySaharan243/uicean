@@ -1,5 +1,6 @@
-export type Asset = { id:string; title:string; type:string; category:string; tags:string[]; price:"Free"|"Pro"; color:string; art:string; description:string };
+export type Asset = { id:string; title:string; type:string; category:string; tags:string[]; price:"Free"|"Pro"; color:string; art:string; description:string; pages?:number; resources?:number };
 export const assets:Asset[] = [
+{id:"nova",title:"NOVA — SaaS Website",type:"Template",category:"SaaS & Startups",tags:["Next.js","React","TypeScript"],price:"Free",color:"#8b9b68",art:"nova",description:"A complete product website with five working pages and an explorable library of reusable sections.",pages:5,resources:12},
 {id:"pricing-table",title:"Pricing Table",type:"Block",category:"Pricing",tags:["React","CSS"],price:"Free",color:"#c5ff71",art:"tide",description:"A responsive pricing section with flexible plans, layouts, and billing options."},
 {id:"spotlight-card",title:"Spotlight Card",type:"Component",category:"Cards",tags:["React","CSS"],price:"Free",color:"#c5ff71",art:"sonar",description:"A soft radial spotlight follows your pointer and brings a little depth to the surface."},
 {id:"orbit",title:"Orbit Navigation",type:"Component",category:"Navigation",tags:["React","Motion"],price:"Free",color:"#c5ff71",art:"orbit",description:"A navigation system that moves like a small solar system."},
@@ -46,4 +47,4 @@ export const assets:Asset[] = [
 , {id:"soft-cursor",title:"Soft Cursor Trail",type:"Component",category:"Interactive effects",tags:["React","CSS"],price:"Pro",color:"#9cd6e6",art:"drift",description:"A restrained cursor trail for playful, tactile moments."}
 ];
 export const collections = ["Objects of desire","The soft interface","Future, in motion","A better kind of bento","Independent by design","Depth studies"];
-export const navItems = [{label:"Discover",href:"/explore"},{label:"Components",href:"/components"},{label:"Blocks",href:"/blocks"},{label:"3D Lab",href:"/3d-lab"},{label:"Templates",href:"/templates"},{label:"Collections",href:"/collections"}];
+export const navItems = [{label:"Discover",href:"/explore"},{label:"Templates",href:"/templates"},{label:"Components",href:"/components"},{label:"Blocks",href:"/blocks"},{label:"3D & Motion",href:"/3d-lab"},{label:"Collections",href:"/collections"}];

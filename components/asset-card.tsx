@@ -6,8 +6,11 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, Heart, MoveUpRight } from "lucide-react";
 import { assets, type Asset } from "@/lib/catalog";
 import { readFavorites, recordRecentlyViewed, writeFavorites } from "@/lib/persistence";
+import { PricingTable, SpotlightCard } from "@/components/marketplace-resources";
 
 function assetHref(asset: Asset) {
+  if (asset.id === "pricing-table") return "/blocks/pricing-table";
+  if (asset.id === "spotlight-card") return "/components/spotlight-card";
   if (asset.type === "Component") return `/components/${asset.id}`;
   if (asset.type === "3D experience") return "/3d-lab";
   if (asset.type === "Template") return "/templates";
@@ -15,6 +18,8 @@ function assetHref(asset: Asset) {
 }
 
 function PreviewArtwork({ asset, index }: { asset: Asset; index: number }) {
+  if (asset.id === "pricing-table") return <div className="asset-art resource-art-pricing"><div className="resource-art-pricing-inner"><PricingTable title="Plans for what comes next." description="Choose a little room to grow."/></div><div className="art-topline"><span>Block · Live preview</span><span className="art-arrow"><ArrowUpRight size={14}/></span></div><div className="art-bottomline"><span>FREE</span><span>PRICING</span></div></div>;
+  if (asset.id === "spotlight-card") return <div className="asset-art resource-art-spotlight"><SpotlightCard title="A little more depth." description="A soft light follows the pointer."/><div className="art-topline"><span>Component · Live preview</span><span className="art-arrow"><ArrowUpRight size={14}/></span></div><div className="art-bottomline"><span>FREE</span><span>SPOTLIGHT</span></div></div>;
   return <div className={`asset-art art-${asset.art}`}>
     <div className="art-grain" />
     <div className="art-display">

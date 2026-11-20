@@ -1,5 +1,7 @@
 export type Asset = { id:string; title:string; type:string; category:string; tags:string[]; price:"Free"|"Pro"; color:string; art:string; description:string };
 export const assets:Asset[] = [
+{id:"pricing-table",title:"Pricing Table",type:"Block",category:"Pricing",tags:["React","CSS"],price:"Free",color:"#c5ff71",art:"tide",description:"A responsive pricing section with flexible plans, layouts, and billing options."},
+{id:"spotlight-card",title:"Spotlight Card",type:"Component",category:"Cards",tags:["React","CSS"],price:"Free",color:"#c5ff71",art:"sonar",description:"A soft radial spotlight follows your pointer and brings a little depth to the surface."},
 {id:"orbit",title:"Orbit Navigation",type:"Component",category:"Navigation",tags:["React","Motion"],price:"Free",color:"#c5ff71",art:"orbit",description:"A navigation system that moves like a small solar system."},
 {id:"forma",title:"Forma — Shape the future",type:"Hero block",category:"Hero",tags:["WebGL","Three.js"],price:"Pro",color:"#a995ff",art:"forma",description:"A dimensional landing page for ideas with gravity."},
 {id:"sonar",title:"Sonar Cards",type:"Component",category:"Cards",tags:["React","CSS"],price:"Free",color:"#7bc9ff",art:"sonar",description:"Depth-aware cards that respond to a passing cursor."},
